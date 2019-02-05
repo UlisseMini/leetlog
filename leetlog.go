@@ -56,9 +56,6 @@ type logger struct {
 	info *log.Logger // informational logging (level 2)
 	warn *log.Logger // warning level logs (level 3)
 	err  *log.Logger // error level logs (level 4)
-
-	// log levels to print
-	level uint8
 }
 
 // Informational logging
