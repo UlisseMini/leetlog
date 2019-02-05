@@ -5,11 +5,22 @@ import (
 )
 
 var (
-	outPrefix  = "[+] "
-	infoPrefix = "[~] "
-	warnPrefix = "[!] "
-	errPrefix  = "[-] "
+	outPrefix   = "[+] "
+	infoPrefix  = "[~] "
+	warnPrefix  = "[!] "
+	errPrefix   = "[-] "
+	debugPrefix = "[/] "
 )
+
+// Debug level logging
+func Debugf(format string, a ...interface{}) {
+	defaultLogger.debug.Printf(format, a...)
+}
+
+// Debug level logging
+func Debug(a ...interface{}) {
+	defaultLogger.debug.Print(a...)
+}
 
 // Informational logging
 func Infof(format string, a ...interface{}) {
@@ -52,10 +63,11 @@ func Warn(a ...interface{}) {
 }
 
 type logger struct {
-	out  *log.Logger // output for the user (level 1)
-	info *log.Logger // informational logging (level 2)
-	warn *log.Logger // warning level logs (level 3)
-	err  *log.Logger // error level logs (level 4)
+	out   *log.Logger // output logs for the user
+	info  *log.Logger // info level logs
+	warn  *log.Logger // warning level logs
+	err   *log.Logger // error level logs
+	debug *log.Logger // debug level logger
 }
 
 // Informational logging
