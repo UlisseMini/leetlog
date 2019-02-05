@@ -3,7 +3,7 @@
 package leetlog
 
 import (
-	log "log"
+	"log"
 	"os"
 )
 

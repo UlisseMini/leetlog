@@ -4,7 +4,7 @@ package leetlog
 
 import (
 	"fmt"
-	log "log"
+	"log"
 	"os"
 
 	"github.com/fatih/color"
