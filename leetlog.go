@@ -6,10 +6,10 @@ import (
 
 var (
 	outPrefix   = "[+] "
-	infoPrefix  = "[~] "
+	infoPrefix  = "[*] "
 	warnPrefix  = "[!] "
 	errPrefix   = "[-] "
-	debugPrefix = "[/] "
+	debugPrefix = "[~] "
 )
 
 // Debug level logging
