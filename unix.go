@@ -3,7 +3,6 @@
 package leetlog
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -24,9 +23,4 @@ var defaultLogger = &logger{
 	warn:  log.New(os.Stderr, yellow.Sprint(warnPrefix), 0),
 	err:   log.New(os.Stderr, red.Sprint(errPrefix), 0),
 	debug: log.New(os.Stderr, gray.Sprint(debugPrefix), 0),
-}
-
-// Return a bold version of s
-func bold(s string) string {
-	return fmt.Sprintf("\033[1m%s\033[0m", s)
 }
