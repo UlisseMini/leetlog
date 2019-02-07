@@ -3,6 +3,7 @@
 package leetlog
 
 import (
+	"io/ioutil"
 	"log"
 	"os"
 
@@ -17,11 +18,11 @@ var (
 	gray   = color.New(color.FgHiBlack, color.Bold)
 )
 
-var defaultLogger = &logger{
-	info:  log.New(os.Stderr, blue.Sprint(infoPrefix), 0),
-	warn:  log.New(os.Stderr, yellow.Sprint(warnPrefix), 0),
-	err:   log.New(os.Stderr, red.Sprint(errPrefix), 0),
-	debug: log.New(os.Stderr, gray.Sprint(debugPrefix), 0),
+var DefaultLogger = &Logger{
+	Linfo:  log.New(os.Stderr, blue.Sprint(infoPrefix), 0),
+	Lwarn:  log.New(os.Stderr, yellow.Sprint(warnPrefix), 0),
+	Lerr:   log.New(os.Stderr, red.Sprint(errPrefix), 0),
+	Ldebug: log.New(ioutil.Discard, gray.Sprint(debugPrefix), 0),
 
-	outPrefix: green.Sprint(outPrefix),
+	OutPrefix: green.Sprint(outPrefix),
 }
