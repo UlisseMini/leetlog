@@ -18,9 +18,10 @@ var (
 )
 
 var defaultLogger = &logger{
-	out:   log.New(os.Stdout, green.Sprint(outPrefix), 0),
 	info:  log.New(os.Stderr, blue.Sprint(infoPrefix), 0),
 	warn:  log.New(os.Stderr, yellow.Sprint(warnPrefix), 0),
 	err:   log.New(os.Stderr, red.Sprint(errPrefix), 0),
 	debug: log.New(os.Stderr, gray.Sprint(debugPrefix), 0),
+
+	outPrefix: green.Sprint(outPrefix),
 }

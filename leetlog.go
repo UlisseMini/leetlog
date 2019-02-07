@@ -1,6 +1,7 @@
 package leetlog
 
 import (
+	"fmt"
 	log "log"
 	"os"
 )
@@ -14,11 +15,13 @@ var (
 )
 
 type logger struct {
-	out   *log.Logger // output logs for the user
 	info  *log.Logger // info level logs
 	warn  *log.Logger // warning level logs
 	err   *log.Logger // error level logs
 	debug *log.Logger // debug level logger
+
+	// output logs for the user
+	outPrefix string
 }
 
 // Infional logging
@@ -26,8 +29,14 @@ func (l *logger) Infof(f string, a ...interface{}) { l.info.Printf(f, a...) }
 func (l *logger) Info(f string, a ...interface{})  { l.info.Printf(f, a...) }
 
 // Output (for the user)
-func (l *logger) Printf(f string, a ...interface{}) { l.out.Printf(f, a...) }
-func (l *logger) Print(a ...interface{})            { l.out.Print(a...) }
+func (l *logger) Printf(f string, a ...interface{}) {
+	fmt.Print(l.outPrefix)
+	fmt.Printf(f, a...)
+}
+func (l *logger) Print(a ...interface{}) {
+	fmt.Print(l.outPrefix)
+	fmt.Print(a...)
+}
 
 // Error logging
 func (l *logger) Errorf(f string, a ...interface{}) { l.err.Printf(f, a...) }
@@ -60,8 +69,8 @@ func Infof(f string, a ...interface{}) { defaultLogger.info.Printf(f, a...) }
 func Info(a ...interface{})            { defaultLogger.info.Print(a...) }
 
 // Output (for the user)
-func Printf(f string, a ...interface{}) { defaultLogger.out.Printf(f, a...) }
-func Print(a ...interface{})            { defaultLogger.out.Print(a...) }
+func Printf(f string, a ...interface{}) { defaultLogger.Printf(f, a...) }
+func Print(a ...interface{})            { defaultLogger.Print(a...) }
 
 // Error logging
 func Errorf(f string, a ...interface{}) { defaultLogger.err.Printf(f, a...) }
