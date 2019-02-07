@@ -2,6 +2,7 @@ package leetlog
 
 import (
 	log "log"
+	"os"
 )
 
 var (
@@ -20,94 +21,56 @@ type logger struct {
 	debug *log.Logger // debug level logger
 }
 
-// Informational logging
-func (l *logger) Infof(format string, a ...interface{}) {
-	l.info.Printf(format, a...)
-}
-
-// Informational logging
-func (l *logger) Info(format string, a ...interface{}) {
-	l.info.Printf(format, a...)
-}
+// Infional logging
+func (l *logger) Infof(f string, a ...interface{}) { l.info.Printf(f, a...) }
+func (l *logger) Info(f string, a ...interface{})  { l.info.Printf(f, a...) }
 
 // Output (for the user)
-func (l *logger) Printf(format string, a ...interface{}) {
-	l.out.Printf(format, a...)
-}
-
-// Output (for the user)
-func (l *logger) Print(a ...interface{}) {
-	l.out.Print(a...)
-}
+func (l *logger) Printf(f string, a ...interface{}) { l.out.Printf(f, a...) }
+func (l *logger) Print(a ...interface{})            { l.out.Print(a...) }
 
 // Error logging
-func (l *logger) Errorf(format string, a ...interface{}) {
-	l.err.Printf(format, a...)
+func (l *logger) Errorf(f string, a ...interface{}) { l.err.Printf(f, a...) }
+func (l *logger) Error(a ...interface{})            { l.err.Print(a...) }
+
+// Fatal is the same as a call to Error then os.Exit(1)
+func (l *logger) Fatal(a ...interface{}) {
+	Error(a...)
+	os.Exit(1)
 }
 
-// Error logging
-func (l *logger) Error(a ...interface{}) {
-	l.err.Print(a...)
+// Fatalf is the same as a call to Error then os.Exit(1)
+func (l *logger) Fatalf(f string, a ...interface{}) {
+	Errorf(f, a...)
+	os.Exit(1)
 }
 
 // Default logger methods
 
 // Warning level logs
-func (l *logger) Warnf(format string, a ...interface{}) {
-	l.warn.Printf(format, a...)
-}
-
-// Warning level logs
-func (l *logger) Warn(a ...interface{}) {
-	l.warn.Print(a...)
-}
+func (l *logger) Warnf(f string, a ...interface{}) { l.warn.Printf(f, a...) }
+func (l *logger) Warn(a ...interface{})            { l.warn.Print(a...) }
 
 // Debug level logging
-func Debugf(format string, a ...interface{}) {
-	defaultLogger.debug.Printf(format, a...)
-}
+func Debugf(f string, a ...interface{}) { defaultLogger.debug.Printf(f, a...) }
+func Debug(a ...interface{})            { defaultLogger.debug.Print(a...) }
 
-// Debug level logging
-func Debug(a ...interface{}) {
-	defaultLogger.debug.Print(a...)
-}
-
-// Informational logging
-func Infof(format string, a ...interface{}) {
-	defaultLogger.info.Printf(format, a...)
-}
-
-// Informational logging
-func Info(a ...interface{}) {
-	defaultLogger.info.Print(a...)
-}
+// Infional logging
+func Infof(f string, a ...interface{}) { defaultLogger.info.Printf(f, a...) }
+func Info(a ...interface{})            { defaultLogger.info.Print(a...) }
 
 // Output (for the user)
-func Printf(format string, a ...interface{}) {
-	defaultLogger.out.Printf(format, a...)
-}
-
-// Output (for the user)
-func Print(a ...interface{}) {
-	defaultLogger.out.Print(a...)
-}
+func Printf(f string, a ...interface{}) { defaultLogger.out.Printf(f, a...) }
+func Print(a ...interface{})            { defaultLogger.out.Print(a...) }
 
 // Error logging
-func Errorf(format string, a ...interface{}) {
-	defaultLogger.err.Printf(format, a...)
-}
+func Errorf(f string, a ...interface{}) { defaultLogger.err.Printf(f, a...) }
+func Error(a ...interface{})            { defaultLogger.err.Print(a...) }
 
-// Error logging
-func Error(a ...interface{}) {
-	defaultLogger.err.Print(a...)
-}
+// Fatal is the same as a call to Error then os.Exit(1)
+func Fatal(a ...interface{})            { defaultLogger.Fatal(a...) }
+func Fatalf(f string, a ...interface{}) { defaultLogger.Fatalf(f, a...) }
 
 // Warning level logs
-func Warnf(format string, a ...interface{}) {
-	defaultLogger.warn.Printf(format, a...)
-}
-
-// Warning level logs
-func Warn(a ...interface{}) {
-	defaultLogger.warn.Print(a...)
-}
+func Warnf(f string, a ...interface{}) { defaultLogger.warn.Printf(f, a...) }
+func Warn(a ...interface{})            { defaultLogger.warn.Print(a...) }
